@@ -1,3 +1,4 @@
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:main_application/search_result.dart';
 
@@ -21,6 +22,15 @@ class Home extends StatelessWidget{
   final String titleText;
   // ignore: use_key_in_widget_constructors
   const Home({required this.titleText});
+
+  void requestPermission() async {
+    final status = await Permission.bluetooth.request();
+    if (!status.isGranted){
+      await Future.delayed(const Duration(seconds: 1));
+      openAppSettings();
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

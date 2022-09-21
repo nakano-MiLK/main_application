@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.main_application">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
    <application
         android:label="main_application"
         android:name="${applicationName}"
