@@ -30,6 +30,7 @@ class Home extends StatelessWidget{
       openAppSettings();
       return;
     }
+
   }
 
   @override
@@ -59,10 +60,39 @@ class Home extends StatelessWidget{
                       style: OutlinedButton.styleFrom(
                         primary: Colors.cyan,
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const SearchResult()),
+                      onPressed: () async {
+                        await showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context){
+                            return AlertDialog(
+                              title: const Text('CONFIRMATION'),
+                              content: const Text('This application uses Bluetooth.\nMake sure your device\'s Bluetooth is turned on or off.'),
+                              actions: <Widget> [
+                                OutlinedButton(
+                                    child: const Text('Cancel'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                ),
+                                OutlinedButton(
+                                    child: const Text('Open Setting'),
+                                    onPressed: () {
+                                      openAppSettings();
+                                    },
+                                ),
+                                OutlinedButton(
+                                    child: const Text('Search'),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => const SearchResult()),
+                                      );
+                                    },
+                                )
+                              ],
+                            );
+                          }
                         );
                       }
                   ),
