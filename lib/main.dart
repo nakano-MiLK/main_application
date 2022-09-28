@@ -30,7 +30,7 @@ class Home extends StatelessWidget{
       openAppSettings();
       return;
     }
-
+    //Bluetoothを扱う動作をここに
   }
 
   @override
